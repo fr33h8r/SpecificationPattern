@@ -15,14 +15,14 @@ namespace SpecificationPattern
     public class WareNearExpireDateSpecificationTests
     {
         [Fact]
-        public void should_test_satisfying(DateTime expected)
+        public void should_test_satisfying()
         {
             var spec = new WareNearExpireDateSpec().IsSatisfiedBy(new Ware {BestBefore = DateTime.Now});
             spec.Should().BeTrue();
-            //spec = new WareNearExpireDateSpec().IsSatisfiedBy(new Ware {BestBefore = DateTime.Now.AddMonths(10)});
-            //spec.Should().BeFalse();
-            //spec = new WareNearExpireDateSpec().IsSatisfiedBy(new Ware { BestBefore = DateTime.Now.AddMonths(-10) });
-            //spec.Should().BeFalse();
+            spec = new WareNearExpireDateSpec().IsSatisfiedBy(new Ware { BestBefore = DateTime.Now.AddMonths(10) });
+            spec.Should().BeFalse();
+            spec = new WareNearExpireDateSpec().IsSatisfiedBy(new Ware { BestBefore = DateTime.Now.AddMonths(-10) });
+            spec.Should().BeTrue();
         }
     }
 }

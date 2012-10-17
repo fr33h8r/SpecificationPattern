@@ -9,7 +9,8 @@ namespace SpecificationPattern
     {
         public int CountExpiredWares(List<Ware> wares)
         {
-            return wares.FindAll(w => w.BestBefore < DateTime.Now.AddMonths(4)).Count;
+            var wareNearExpireDateSpec = new WareNearExpireDateSpec();
+            return wares.FindAll(wareNearExpireDateSpec.IsSatisfiedBy).Count;
         }
     }
 
